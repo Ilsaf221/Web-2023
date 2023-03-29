@@ -1,0 +1,164 @@
+.page
+{
+    margin: 0px;
+}
+
+.body-background 
+{
+    background: #FFFFFF;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.head
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 20px;
+}
+
+
+.head__logo
+{
+    font: 400 26px "Lora";
+    color: #2E2E2E;
+}
+
+.head__menu 
+{
+    display: flex;
+    gap: 40px;
+}
+
+.head__menu-word 
+{
+    text-decoration: none;
+    color: #2E2E2E;
+    font: 400 12px/20px 'Oxygen';
+}
+
+.head__menu-word:hover 
+{
+    color: #DD783F;
+}
+
+.head__title 
+{
+    font: 400 50px/51px "Lora";
+    color: #2E2E2E;
+    text-align: center;
+    margin: 110px 0 0 0;
+}
+
+.head__description 
+{
+    font: 400 17px/20px "Oxygen";
+    color: #2E2E2E;
+    opacity: 0.63;
+    text-align: center;
+}
+
+.image
+{
+    width: 100%;
+    margin-top: 113px;
+}
+
+.article
+{
+    margin-top: 140px;
+    width: 960px;
+    text-align: left;
+    font: 400 24px/35px "Oxygen";
+    align-self: center;
+}
+
+.footer__background
+{
+    background: #000000 url("images/stay_in_touch.png") no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 135px; 
+}
+
+.footer 
+{
+    background: #232F38 url("images/footer.png") no-repeat;
+    opacity: 0.6;
+    width: 100%;
+    margin-top: 81px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 31px;
+    padding-bottom: 32px;
+}
+
+.footer-headline 
+{
+    font: 400 25px/30px "Oxygen";
+    color: #EFEFEF;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #DEDEDE;
+    text-underline-offset: 17px;
+    margin-top: 81px;
+}
+
+.form 
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 38px;
+}
+
+.form__input 
+{
+    padding: 18px 208px 18px 35px;
+    font: 400 12px/14.06px "Roboto";
+    text-align: left;
+    color: #808080;
+}
+
+.form__button 
+{
+    opacity: 72%;
+    padding: 18px 43px 18px 44px;
+    background-color: #808080;
+    border-radius: 0 3px 3px 0;
+    border-width: 0;
+    font: 400 12px/14.06px "Roboto";
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.footer__logo
+{
+    color: #FFFFFF;
+    font: 400 26px/26px "Lora";  
+}
+
+.footer__menu 
+{ 
+    display: flex;
+    gap: 20px;        
+}
+
+.footer__menu-word 
+{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    font: 400 11px/26px "Oxygen";
+}
+
+.footer__menu-word:hover 
+{
+    color: #DD783F;
+}
+
+
+
