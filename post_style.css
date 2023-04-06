@@ -11,7 +11,7 @@
     flex-direction: column;
 }
 
-.head
+.head-block
 {
     display: flex;
     justify-content: space-around;
@@ -20,31 +20,35 @@
 }
 
 
-.head__logo
+.head-block__logo
 {
     font: 400 26px "Lora";
     color: #2E2E2E;
 }
 
-.head__menu 
+.head-block__menu 
 {
     display: flex;
     gap: 40px;
 }
 
-.head__menu-word 
+.head-block__menu-word 
 {
     text-decoration: none;
-    color: #2E2E2E;
     font: 400 12px/20px 'Oxygen';
 }
 
-.head__menu-word:hover 
+.head-block__menu-word_dark
+{
+    color: #2E2E2E;
+}
+
+.head-block__menu-word:hover 
 {
     color: #DD783F;
 }
 
-.head__title 
+.head-block__title 
 {
     font: 400 50px/51px "Lora";
     color: #2E2E2E;
@@ -52,7 +56,7 @@
     margin: 110px 0 0 0;
 }
 
-.head__description 
+.head-block__description 
 {
     font: 400 17px/20px "Oxygen";
     color: #2E2E2E;
@@ -77,7 +81,7 @@
 
 .footer__background
 {
-    background: #000000 url("images/stay_in_touch.png") no-repeat;
+    background: #000000 url("../img/stay_in_touch.png") no-repeat;
     background-size: cover;
     width: 100%;
     display: flex;
@@ -87,7 +91,7 @@
 
 .footer 
 {
-    background: #232F38 url("images/footer.png") no-repeat;
+    background: #232F38 url("../img/footer.png") no-repeat;
     opacity: 0.6;
     width: 100%;
     margin-top: 81px;

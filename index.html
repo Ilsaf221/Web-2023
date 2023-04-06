@@ -3,8 +3,7 @@
 <head>
   <title>index</title>
   <meta charset="utf-8">
-  <link href="style.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -37,122 +36,43 @@
     <section>
       <h2 class="main-block-headline">Featured Posts</h2>
       <div class="main-blocks">
-        <div class="main-block main-block_the-road-ahead-background">
+        {{ range .FeaturedPosts }}
+        <div class="{{ .ImgModifier }}">
+          <div class="{{ .ButtonModifier }}">{{ .ButtonText }}</div>
           <div class="main-block__main-info">
-            <span class="main-block__title">The Road Ahead</span>
-            <p class="main-block__description">The road ahead might be paved - it might not be.</p>
+            <span class="main-block__title">{{ .Title }}</span>
+            <p class="main-block__description">{{ .Subtitle }}</p>
           </div>
           <div class="main-block__post-info">
             <div class="main-block__author">
-              <img class="main-block__image-of-person" src="images/mat_vogels.jpg">
-              <span class="main-block__person">Mat Vogels</span>
+              <img class="main-block__image-of-person" src="{{ .AuthorImg }}">
+              <span class="main-block__person">{{ .Author }}</span>
             </div>
-            <span class="main-block__date">September 25, 2015</span>
+            <span class="main-block__date">{{ .PublishDate }}</span>
           </div>
         </div>
-        <div class="main-block main-block_from-top-down-background">
-          <span class="main-block__modif">Adventure</span>
-          <div class="main-block__main-info">
-            <span class="main-block__title">From Top Down</span>
-            <p class="main-block__description">Once a year, go someplace you’ve never been before.</p>
-          </div>
-          <div class="main-block__post-info">
-            <div class="main-block__author">
-              <img class="main-block__image-of-person" src="images/william_wong.jpg">
-              <span class="main-block__person">William Wong</span>
-            </div>
-            <span class="main-block__date">September 25, 2015</span>
-          </div>
-        </div>
+        {{ end }}
       </div>
     </section>
     <section>
       <h2 class="post-block-headline">Most Recent</h2>
       <div class="post-blocks">
+        {{ range .MostResentPosts }}
         <div class="post-block">
-          <img src="images/still_standing_tall.jpg">
+          <img src="{{ .Img }}">
           <div class="post-block__info">
-            <span class="post-block__title">Still Standing Tall</span>
-            <p class="post-block__description">Life begins at the end of your comfort zone.</p>
+            <span class="post-block__title">{{ .Title }}</span>
+            <p class="post-block__description">{{ .Subtitle }}</p>
             <div class="post-block__post-info">
               <div class="post-block__author">
-                <img class="post-block__image-of-person" src="images/william_wong.jpg">
-                <span class="post-block__person">William Wong</span>
+                <img class="post-block__image-of-person" src="{{ .AuthorImg }}">
+                <span class="post-block__person">{{ .Author }}</span>
               </div>
-              <span class="post-block__date">9/25/2015</span>
+              <span class="post-block__date">{{ .PublishDate }}</span>
             </div>
           </div>
         </div>
-        <div class="post-block">
-          <img src="images/sunny_side_up.png">
-          <div class="post-block__info">
-            <span class="post-block__title">Sunny Side Up</span>
-            <p class="post-block__description">No place is ever as bad as they tell you it’s going to be.</p>
-            <div class="post-block__post-info">
-              <div class="post-block__author">
-                <img class="post-block__image-of-person" src="images/mat_vogels.jpg">
-                <span class="post-block__person">Mat Vogels</span>
-              </div>
-              <span class="post-block__date">9/25/2015</span>
-            </div>
-          </div>
-        </div>
-        <div class="post-block">
-          <img src="images/water_falls.png">
-          <div class="post-block__info">
-            <span class="post-block__title">Water Falls</span>
-            <p class="post-block__description">We travel not to escape life, but for life not to escape us.</p>
-            <div class="post-block__post-info">
-              <div class="post-block__author">
-                <img class="post-block__image-of-person" src="images/mat_vogels.jpg">
-                <span class="post-block__person">Mat Vogels</span>
-              </div>
-              <span class="post-block__date">9/25/2015</span>
-            </div>
-          </div>
-        </div>
-        <div class="post-block">
-          <img src="images/through_the_mist.png">
-          <div class="post-block__info">
-            <span class="post-block__title">Through the Mist</span>
-            <p class="post-block__description">Travel makes you see what a tiny place you occupy in the world.</p>
-            <div class="post-block__post-info">
-              <div class="post-block__author">
-                <img class="post-block__image-of-person" src="images/william_wong.jpg">
-                <span class="post-block__person">William Wong</span>
-              </div>
-              <span class="post-block__date">9/25/2015</span>
-            </div>
-          </div>
-        </div>
-        <div class="post-block">
-          <img src="images/awaken_early.png">
-          <div class="post-block__info">
-            <span class="post-block__title">Awaken Early</span>
-            <p class="post-block__description">Not all those who wander are lost.</p>
-            <div class="post-block__post-info">
-              <div class="post-block__author">
-                <img class="post-block__image-of-person" src="images/mat_vogels.jpg">
-                <span class="post-block__person">Mat Vogels</span>
-              </div>
-              <span class="post-block__date">9/25/2015</span>
-            </div>
-          </div>
-        </div>
-        <div class="post-block">
-          <img src="images/try_it_always.png">
-          <div class="post-block__info">
-            <span class="post-block__title">Try it Always</span>
-            <p class="post-block__description">The world is a book, and those who do not travel read only one page.</p>
-            <div class="post-block__post-info">
-              <div class="post-block__author">
-                <img class="post-block__image-of-person" src="images/mat_vogels.jpg">
-                <span class="post-block__person">Mat Vogels</span>
-              </div>
-              <span class="post-block__date">9/25/2015</span>
-            </div>
-          </div>
-        </div>
+        {{ end }}
       </div>
     </section>
     <div class="footer__background">

@@ -1,6 +1,6 @@
 .head-block 
 {
-    background: #000000 url("images/header_image.jpg") no-repeat;
+    background: #000000 url("/static/img/header_image.jpg") no-repeat;
     background-size: cover;
     width: 100%; 
     display: flex;
@@ -31,7 +31,7 @@
 {
     text-decoration: none;
     color: #FFFFFF;
-    font: 400 12px/20px 'Oxygen';
+    font: 400 12px/1.67 'Oxygen';
 }
 
 .head-block__menu-word:hover 
@@ -42,21 +42,21 @@
 .head-block__title
 {
     text-align: center;
-    margin: 130px 0 0 0;
-    font: 400 50px/51px "Lora";
+    margin: 130px 0 0;
+    font: 400 50px/1.02 "Lora";
     color: #FFFFFF;
 }
 
 .head-block__description
 {
     text-align: center;
-    font: 400 17px/20px "Oxygen";
+    font: 400 17px/1.18 "Oxygen";
     color: rgba(255, 255, 255, 0.63);
 }
 
 .main-menu
 {
-    font: 400 14px/20px "Lora";
+    font: 400 14px/1.43 "Lora";
     text-align: center;
     background: #FFFFFF;
     padding-top: 22px;
@@ -69,7 +69,7 @@
 .main-menu__word
 {
     text-decoration: none;
-    width: 90px;
+    min-width: 90px;
     color: #768088;
 }
 
@@ -84,10 +84,15 @@
     background-color: #DD783F;
     border-radius: 3px;
     border-width: 0;
-    font: 13px/20px "Oxygen";
+    font: 13px/1.54 "Oxygen";
     text-align: center;
     color: #FFFFFF;
     margin: 43px auto 157px;
+}
+
+.page 
+{
+    margin: 0;
 }
 
 .body-background 
@@ -98,15 +103,9 @@
     flex-direction: column;
 }
 
-.page 
-{
-    margin: 0;
-   
-}
-
 .main-block-headline 
 {
-    font: 400 20px/27px "Oxygen";
+    font: 400 20px/1.35 "Oxygen";
     text-align: center;
     text-decoration: underline;
     text-decoration-color: #DEDEDE;
@@ -121,22 +120,23 @@
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.main-block
+{
+    max-width: 460px;
+    width: 100%;
 }
 
 .main-block_the-road-ahead-background 
 {
-    background: url("images/the_road_ahead.png") no-repeat;
-    width: 460px;
-    height: 280px;
-    margin-top: 40px;
+    background: url("/static/img/the_road_ahead.png") no-repeat;
 }
 
 .main-block_from-top-down-background
 {
-    background: url("images/from_top_down.png") no-repeat;
-    width: 460px;
-    height: 280px;
-    margin-top: 40px;
+    background: url("/static/img/from_top_down.png") no-repeat;
 }
 
 .main-block__main-info
@@ -150,13 +150,13 @@
 
 .main-block__title
 {
-    font: 400 27px/30px "Lora";
+    font: 400 27px/1.11 "Lora";
     color: #FFFFFF;
 }
 
 .main-block__description
 {
-    font: 400 14px/25px "Oxygen";
+    font: 400 14px/1.79 "Oxygen";
     color: #FFFFFF;
     opacity: 0.7;
 }
@@ -170,10 +170,15 @@
     width: 87px;
     padding-top: 6px;
     padding-bottom: 7px;
-    font: 400 12px/13px 'Oxygen';
+    font: 400 12px/1.08 'Oxygen';
     text-align: center;
     margin-top: 20px;
     margin-left: 20px;
+}
+
+.main-block__modif_none
+{
+    margin: 0;
 }
 
 .main-block__post-info
@@ -186,7 +191,7 @@
 
 .main-block__person
 {
-    font: 400 12px/35px "Oxygen";
+    font: 400 12px/2.92 "Oxygen";
     color: #FFFFFF;
     opacity: 0.7;
 }
@@ -194,7 +199,7 @@
 
 .main-block__date
  {
-    font: 400 12px/35px "Oxygen";
+    font: 400 12px/2.92 "Oxygen";
     color: #FFFFFF;
     opacity: 0.7;
     display: inline-block;
@@ -205,7 +210,7 @@
 {
     max-width: 26px;
     max-height: 26px;
-    border-radius: 60px;
+    border-radius: 50%;
 }
 
 .main-block__author
@@ -225,11 +230,12 @@
     gap: 24px;
     padding-right: 250px;
     padding-left: 250px;
+    margin-top: 39px; 
 }
 
 .post-block-headline 
 {
-    font: 400 20px/27px "Oxygen";
+    font: 400 20px/1.35 "Oxygen";
     text-align: center;
     text-decoration: underline;
     text-decoration-color: #DEDEDE;
@@ -240,8 +246,7 @@
 .post-block 
 {
     background: #FFFFFF;
-    width: 296px;
-    margin-top: 39px;  
+    width: 296px; 
 }
 
 .post-block__info
@@ -256,12 +261,12 @@
 
 .post-block__title 
 {
-    font: 400 16px/21px "Lora";
+    font: 400 16px/1.31 "Lora";
 }
 
 .post-block__description 
 {
-    font: 400 13px/19px "Oxygen";
+    font: 400 13px/1.46 "Oxygen";
     color: #7A7A7A;
 }
 
@@ -281,13 +286,13 @@
 
 .post-block__person
 {
-    font: 400 12px/35px "Oxygen";
+    font: 400 12px/2.92 "Oxygen";
     color: #999999;
 }
 
 .post-block__date 
 {
-    font: 400 12px/35px "Oxygen";
+    font: 400 12px/2.92 "Oxygen";
     color: #999999;
 }
 
@@ -298,7 +303,7 @@
 
 .footer__background
 {
-    background: #000000 url("images/stay_in_touch.png") no-repeat;
+    background: #000000 url("/static/img/stay_in_touch.png") no-repeat;
     background-size: cover;
     width: 100%;
     display: flex;
@@ -326,8 +331,9 @@
 
 .form__input 
 {
-    padding: 18px 208px 18px 35px;
-    font: 400 12px/14.06px "Roboto";
+    width: 375px;
+    padding: 18px 35px;
+    font: 400 12px/1.17 "Roboto";
     text-align: left;
     color: #808080;
 }
@@ -339,14 +345,14 @@
     background-color: #808080;
     border-radius: 0 3px 3px 0;
     border-width: 0;
-    font: 400 12px/14.06px "Roboto";
+    font: 400 12px/1.17 "Roboto";
     text-align: center;
     color: #FFFFFF;
 }
 
 .footer 
 {
-    background: #232F38 url("images/footer.png") no-repeat;
+    background: #232F38 url("/static/img/footer.png") no-repeat;
     opacity: 0.6;
     width: 100%;
     margin-top: 81px;
@@ -360,7 +366,7 @@
 .footer__logo
 {
     color: #FFFFFF;
-    font: 400 26px/26px "Lora";
+    font: 400 26px "Lora";
 }
 
 .footer__menu 
@@ -373,7 +379,7 @@
 {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.6);
-    font: 400 11px/26px "Oxygen";
+    font: 400 11px/2.36 "Oxygen";
 }
 
 .footer__menu-word:hover 
