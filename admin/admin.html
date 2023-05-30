@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>New Post</title>
+    <meta charset="utf-8">
+    <link href="../static/css/admin_style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script defer src="../js/admin.js"></script>
+</head>
+
+<body class="page">
+    <div class="body-background">
+        <div class="header">
+            <div class="logo">
+                <h1 class="logo__title1">Escape.</h1>
+                <h2 class="logo__title2">author</h2>
+            </div>
+            <div class="profile">
+                <img src="../static/img/profile_avatar.png">
+                <div class="profile__exit-icon">
+                    <img src="../static/img/exit_vector1.png">
+                    <img src="../static/img/exit_vector2.png">
+                    <img src="../static/img/exit_vector3.png">
+                </div>
+            </div>
+        </div>
+        <div class="top-labels">
+            <div class="main-title">
+                <h1 class="main-title__title">New Post</h1>
+                <p class="main-title__subtitle">Fill out the form bellow and publish your article</p>
+            </div>
+            <form>
+                <input class="button" type="submit" value="Publish">
+            </form>
+        </div>
+        <div class="form-background">
+            <h2 class="form-title">Main Information</h2>
+            <form class="form">
+                <div class="form__first-column">
+                    <span class="form__caption form__caption_input-title">Title</span>
+                    <input class="form__input" type="text" id="title" required />
+                    <span class="form__caption">Short description</span>
+                    <input class="form__input" type="text" id="description" required />
+                    <span class="form__caption">Author name</span>
+                    <input class="form__input" type="text" id="author_name" required />
+                    <span class="form__caption">Author photo</span>
+
+                    <div class="form__input-author-photo">
+                        <label for="author_photo" class="form__upload-author-photo-button">
+                            <img src="../static/img/upload_avatar.png" id="author_image" class="author-image" />
+                            <img src="../static/img/upload_icon.jpg" class="upload-author-photo-icon" />
+                            <span class="form__upload">Upload</span>
+                        </label>
+
+                        <input id="author_photo" type="file" class="input-file" accept=".jpg, .jpeg, .png" />
+
+                        <label for="author_photo_remove" class="form__remove-author-photo">
+                            <img src="../static/img/remove_icon.png">
+                            <span class="form__remove">Remove</span>
+                        </label>
+                        <input id="author_photo_remove" type="submit" />
+                    </div>
+
+                    <span class="form__caption">Publish Date</span>
+                    <input class="form__input" type="date" id="publish_date">
+                    <span class="form__caption">Hero Image</span>
+                    <div class="form__input-hero-image-10mb">
+                        <label for="hero_image_10mb">
+                            <img src="../static/img/hero_image_10mb.png" id="hero_image" class="hero-image-10mb" />
+                        </label>
+                        <input id="hero_image_10mb" type="file" class="input-file" accept=".jpg, .jpeg, .png" />
+                    </div>
+                    <span class="form__hero-image-10mb-caption" id="hero-image_caption">Size up to 10mb. Format: png,
+                        jpeg, gif.</span>
+                    <div class="form__hero-image-10mb-buttons" id="hero_image_buttons">
+                        <label for="hero_image_10mb" class="form__upload-new">
+                            <img src="../static/img/upload_icon.jpg" class="upload-icon">
+                            <span class="form__upload">Upload New</span>
+                        </label>
+                        <label for="hero_image_remove" class="form__remove-hero-image">
+                            <img src="../static/img/remove_icon.png">
+                            <span class="form__remove">Remove</span>
+                        </label>
+                        <input id="hero_image_remove" type="submit" />
+                    </div>
+                    <span class="form__caption">Hero Image</span>
+
+                    <div class="form__input-hero-image-5mb">
+                        <label for="hero_image_5mb">
+                            <img src="../static/img/hero_image_5mb.png" id="hero_image_tiny" class="hero-image-5mb" />
+                        </label>
+                        <input id="hero_image_5mb" type="file" class="input-file" accept=".jpg, .jpeg, .png" />
+                    </div>
+                    <span class="form__hero-image-5mb-caption">Size up to 5mb. Format: png, jpeg, gif.</span>
+                    <div class="form__hero-image-5mb-buttons">
+                        <label for="hero_image_5mb" class="form__upload-new">
+                            <img src="../static/img/upload_icon.jpg" class="upload-icon">
+                            <span class="form__upload">Upload New</span>
+                        </label>
+                        <label for="hero_image_remove" class="form__remove-hero-image">
+                            <img src="../static/img/remove_icon.png">
+                            <span class="form__remove">Remove</span>
+                        </label>
+                        <input id="hero_image_remove" type="submit" />
+                    </div>
+                </div>
+                <div class="form__second-column">
+                    <span class="form__caption">Article preview</span>
+                    <div class="article-box">
+                        <div class="inner-article-box">
+                            <span class="inner-article-box__title" id="titlePreview">New Post</span>
+                            <span class="inner-article-box__subtitle" id="subtitlePreview">Please, enter any description</span>
+                            <img class="inner-article-box__image-place" src="../static/img/article_preview_image.png">
+                        </div>
+                    </div>
+                    <span class="form__caption">Post card preview</span>
+                    <div class="post-card-box">
+                        <div class="inner-post-card-box">
+                            <img class="inner-post-card-box__image-place"
+                                src="../static/img/post_card_preview_image.png">
+                            <span class="inner-post-card-box__title" id="titlePreviewTiny">New Post</span>
+                            <span class="inner-post-card-box__subtitle" id="subtitlePreviewTiny">Please, enter any
+                                description</span>
+                            <div class="inner-post-card-box__post-info">
+                                <div class="inner-post-card-box__author">
+                                    <img class="inner-post-card-box__author-image"
+                                        src="../static/img/empty_author_image.png">
+                                    <span class="inner-post-card-box__author-name" id="authorNamePreviewTiny">Enter
+                                        author name</span>
+                                </div>
+                                <span class="inner-post-card-box__date" id="publishDatePreviewTiny">19/04/2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-background">
+            <h2 class="bottom-form-title">Content</h2>
+            <form class="bottom-form">
+                <span class="bottom-form__caption">Post content (plain text)</span>
+                <textarea class="bottom-form__input" id="content" placeholder="Type anything you want ..."></textarea>
+            </form>
+        </div>
+
+    </div>
+</body>
