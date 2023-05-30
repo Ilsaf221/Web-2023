@@ -1,0 +1,154 @@
+.page
+{
+    margin: 0;
+}
+
+.body-background
+{
+    background: #000000 url("../img/login_background.jpg") no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text
+{
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+    margin-left: 230px;
+    gap: 16px;
+}
+
+.text__title
+{
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-end;
+}
+
+.text__title1
+{
+    font: 400 45.5px/1.01 "Lora";
+    margin: 0;
+}
+
+.text__title2
+{
+    font: 400 24.5px/1.26 "Oxygen";
+    margin: 0;
+}
+
+.text__subtitle
+{
+    font: 400 17px/1.47 "Oxygen";
+    margin: 0;
+}
+
+.form-background
+{
+    background: #FFFFFF;
+    border-radius: 3px;
+    width: 480px;
+    height: 560px;
+    margin-right: 130px;
+}
+
+.form
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 56px;
+}
+
+.form__input
+{
+    margin-top: 5px;
+    padding: 8px 36px 8px 4px;
+    border: 0px;
+    border-bottom: 1px solid #EAEAEA;
+    font: 400 16px/1.5 "Oxygen";
+    color: #2E2E2E;
+}
+
+.form__input:hover {
+    background: #F7F7F7;
+}
+
+.form__input:focus {
+    outline: none;
+    background: #F7F7F7;
+    border-bottom: 1px solid #2E2E2E;
+}
+
+.form__button
+{
+    width: 93px;
+    margin-top: 40px;
+    padding: 12px 24px;
+    background-color: #DD783F;
+    border-radius: 3px;
+    border-width: 0;
+    font: 400 16px/1.5 "Oxygen";
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.form__title
+{
+    font: 400 34px/1.18 "Lora";
+    margin: 0;
+}
+
+.form__email
+{
+    font: 400 12px/1.33 "Oxygen";
+    color: #7A7A7A;
+    margin-top: 50px;
+}
+
+.form__password
+{
+    font: 400 12px/1.33 "Oxygen";
+    color: #7A7A7A;
+    margin-top: 40px;
+}
+
+.eye-icon
+{
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 369px;
+    cursor: pointer;
+}
+
+.eye-icon-hide
+{
+    display: none;
+}
+
+.eye-off-icon
+{
+    display: none;
+}
+
+.eye-off-icon-show
+{
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 369px;
+    display: flex;
+    cursor: pointer;
+}
+
+.password-button input
+{
+    display: none;
+}

@@ -1,0 +1,487 @@
+.page {
+    margin: 0;
+}
+
+.body-background {
+    background: #F7F7F7;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 338px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background: #2E2E2E;
+    width: 100%;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    color: #FFFFFF;
+    margin-left: 130px;
+}
+
+.logo__title1 {
+    font: 400 25.72px/1 "Lora";
+    margin: 0;
+}
+
+.logo__title2 {
+    font: 400 13.85px/1.26 "Oxygen";
+    margin: 0;
+}
+
+.profile {
+    display: flex;
+    gap: 19px;
+    margin-right: 142px;
+}
+
+.profile__exit-icon {
+    display: flex;
+    gap: 0px;
+    align-items: center;
+}
+
+.top-labels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 64px;
+}
+
+.main-title {
+    color: #000000;
+    gap: 8px;
+    margin-left: 130px;
+}
+
+.main-title__title {
+    margin: 0;
+    font: 400 34px/1.18 "Lora";
+}
+
+.main-title__subtitle {
+    font: 400 14px/1.43 "Oxygen";
+    color: #2E2E2E;
+    opacity: 0.63;
+}
+
+.button {
+    width: 100px;
+    padding: 12px 24px;
+    background-color: #DD783F;
+    border-radius: 3px;
+    border-width: 0;
+    font: 400 16px/1.5 "Oxygen";
+    text-align: center;
+    color: #FFFFFF;
+    margin-right: 130px;
+}
+
+.button:hover {
+    border: 1px solid #8b4513;
+}
+
+.form-background {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border-radius: 3px;
+    margin-right: 130px;
+    margin-left: 130px;
+    margin-top: 32px;
+    padding-bottom: 56px;
+}
+
+.form-title {
+    font: 400 27px/1.11 "Lora";
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+}
+
+.form__first-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__second-column {
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+.form__input {
+    margin-top: 5px;
+    padding: 8px 4px;
+    border: 0px;
+    border-bottom: 1px solid #EAEAEA;
+    font: 400 16px/1.5 "Oxygen";
+    color: #2E2E2E;
+}
+
+.form__input:hover {
+    background: #F7F7F7;
+}
+
+.form__input:invalid {
+    outline: none;
+    border-bottom: 1px solid #EAEAEA;
+    color: #2E2E2E;
+}
+
+.form__input:focus {
+    outline: none;
+    background: #F7F7F7;
+    border-bottom: 1px solid #2E2E2E;
+}
+
+.form__input:valid {
+    outline: none;
+    background: #F7F7F7;
+    border-bottom: 1px solid #2E2E2E;
+}
+
+.form__caption {
+    font: 400 12px/1.33 "Oxygen";
+    color: #7A7A7A;
+    margin-top: 40px;
+}
+
+.form__caption_input-title {
+    margin-top: 0;
+}
+
+.form__input-author-photo input {
+    visibility: hidden;
+}
+
+.form__input-author-photo {
+    display: flex;
+    flex-direction: row;
+    gap: 21px;
+    margin-top: 10px;
+}
+
+.form__upload-author-photo-button {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.form__upload-author-photo-button-view {
+    font: 400 16px/1.5 "Oxygen";
+    color: #2E2E2E;
+}
+
+.upload-author-photo-icon
+{
+    display: none;
+}
+
+.upload-author-photo-icon-show
+{
+    display: flex;
+}
+
+.author-image
+{
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+}
+
+.form__author-photo {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+
+.form__upload {
+    font: 400 16px/1.5 "Oxygen";
+    color: #2E2E2E;
+}
+
+.form__remove-author-photo {
+    flex-direction: row;
+    gap: 13px;
+    align-items: center;
+    display: none;
+    cursor: pointer;
+}
+
+.form__remove {
+    font: 400 16px/1.5 "Oxygen";
+    color: #E86961;
+}
+
+.remove-author-photo__remove-author-photo-show {
+    display: flex;
+}
+
+.input-file {
+    position: absolute;
+}
+
+.form__input-hero-image-10mb {
+    margin-top: 5px;
+}
+
+.form__input-hero-image-10mb input {
+    visibility: hidden;
+}
+
+.hero-image-10mb {
+    width: 560px;
+    height: 160px;
+}
+
+.form__hero-image-10mb-caption {
+    margin-top: 12px;
+    font: 400 12px/1.33 "Oxygen";
+    color: #7A7A7A;
+}
+
+.form__hero-image-10mb-caption-hide {
+    display: none;
+}
+
+.form__hero-image-10mb-buttons {
+    display: none;
+    gap: 17px;
+}
+
+.form__hero-image-10mb-buttons input {
+    visibility: hidden;
+}
+
+.form__hero-image-10mb-buttons-show {
+    margin-top: 12px;
+    display: flex;
+}
+
+.form__upload-new
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+}
+
+.form__remove-hero-image {
+    flex-direction: row;
+    gap: 13px;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.upload-icon
+{
+    width: 22px;
+    height: 18px;
+}
+
+.form__input-hero-image-5mb {
+    margin-top: 5px;
+}
+
+.form__input-hero-image-5mb input {
+    visibility: hidden;
+}
+
+.hero-image-5mb {
+    width: 296px;
+    height: 150px;
+}
+
+.form__hero-image-5mb-caption {
+    margin-top: 12px;
+    font: 400 12px/1.33 "Oxygen";
+    color: #7A7A7A;
+}
+
+.form__hero-image-5mb-caption-hide {
+    display: none;
+}
+
+.form__hero-image-5mb-buttons {
+    display: none;
+    gap: 17px;
+}
+
+.form__hero-image-5mb-buttons input {
+    visibility: hidden;
+}
+
+.form__hero-image-5mb-buttons-show {
+    margin-top: 12px;
+    display: flex;
+}
+
+.article-box {
+    margin-top: 16px;
+    box-sizing: border-box;
+    border: 1px solid #D3D3D3;
+    border-radius: 30px 30px 0px 0px;
+    width: 440px;
+    height: 385px;
+}
+
+.inner-article-box {
+    margin-top: 32px;
+    margin-left: 16px;
+    box-sizing: border-box;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    width: 408px;
+    height: 353px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner-article-box__title {
+    font: 400 20.4px/1.18 "Lora";
+    margin-top: 59px;
+    color: #2E2E2E;
+}
+
+.inner-article-box__subtitle {
+    font: 400 10.2px/1.18 "Oxygen";
+    margin-top: 4px;
+    color: rgba(46, 46, 46, 0.63);
+}
+
+.inner-article-box__image-place {
+    margin-top: 36px;
+    width: 408px;
+    height: 160px;
+}
+
+.post-card-box {
+    margin-top: 16px;
+    box-sizing: border-box;
+    border: 1px solid #D3D3D3;
+    border-radius: 10px 0px 0px 0px;
+    width: 440px;
+    height: 360px;
+}
+
+.inner-post-card-box {
+    width: 296px;
+    height: 291px;
+    margin-top: 32px;
+    margin-left: 16px;
+    border-radius: 3px;
+    border: 0.5px solid #EAEAEA;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-post-card-box__image-place {
+    background: #F7F7F7;
+    width: 296px;
+    height: 150px;
+}
+
+.inner-post-card-box__title {
+    font: 400 16px/1.31 "Lora";
+    margin-top: 14px;
+    margin-left: 13px;
+    color: #101315;
+}
+
+.inner-post-card-box__subtitle {
+    font: 400 13px/1.46 "Oxygen";
+    margin-top: 7px;
+    margin-left: 13px;
+    color: #7A7A7A;
+}
+
+.inner-post-card-box__post-info {
+    background: #FCFCFC;
+    margin-top: 32px;
+    padding-top: 7px;
+    padding-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #EAEAEA;
+}
+
+.inner-post-card-box__author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 13px;
+}
+
+.inner-post-card-box__author-image {
+    border-radius: 50%;
+    width: 26px;
+    height: 26px
+}
+
+.inner-post-card-box__author-name {
+    font: 400 12px/2.92 "Oxygen";
+    color: #999999;
+}
+
+.inner-post-card-box__date {
+    font: 400 12px/2.92 "Oxygen";
+    color: #999999;
+    margin-right: 13px;
+}
+
+.bottom-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.bottom-form-title {
+    font: 400 27px/1.11 "Lora";
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.bottom-form__caption {
+    font: 400 12px/1.33 "Oxygen";
+    color: #7A7A7A;
+}
+
+.bottom-form__input {
+    margin-top: 5px;
+    margin-right: 200px;
+    padding: 8px 8px 128px;
+    border: 1px solid #EAEAEA;
+    border-radius: 5px;
+    font: 400 16px/1.5 "Oxygen";
+    color: #999999;
+}
+
+.bottom-form__input:focus {
+    outline: none;
+}

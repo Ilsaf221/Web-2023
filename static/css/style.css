@@ -19,6 +19,7 @@
 {
     color: #FFFFFF;
     font: 400 26px "Lora";
+    text-decoration: none;
 }
 
 .head-block__menu
@@ -132,11 +133,13 @@
 .main-block_the-road-ahead-background 
 {
     background: url("/static/img/the_road_ahead.png") no-repeat;
+    text-decoration: none;
 }
 
 .main-block_from-top-down-background
 {
     background: url("/static/img/from_top_down.png") no-repeat;
+    text-decoration: none;
 }
 
 .main-block__main-info
@@ -247,6 +250,7 @@
 {
     background: #FFFFFF;
     width: 296px; 
+    text-decoration: none;
 }
 
 .post-block__info
@@ -262,6 +266,7 @@
 .post-block__title 
 {
     font: 400 16px/1.31 "Lora";
+    color: black;
 }
 
 .post-block__description 
