@@ -21,7 +21,12 @@ const defaultImageTiny = "../static/img/hero_image_5mb.png";
 const publishButton = document.querySelector(".button");
 
 let authorAvatar;
-let postImage;
+let authorPhotoName;
+
+let articleImage;
+let articleImageName
+let postCardImage;
+let postCardImageName;
 
 
 uploadTitle.addEventListener(
@@ -102,6 +107,7 @@ uploadAuthorPhoto.addEventListener(
         authorPhotoPreviewTiny.src = reader.result;
         authorPhoto.src = reader.result;
         authorAvatar = reader.result;
+        authorPhotoName = file.name
       },
       false
     );
@@ -155,7 +161,8 @@ uploadImage.addEventListener(
         imageInput.src = reader.result;
         imagePreviewTiny.src = reader.result;
         imageInputTiny.src = reader.result;
-        postImage = reader.result;
+        articleImage = reader.result;
+        articleImageName = file.name;
 
         imageButtons.classList.add("form__hero-image-10mb-buttons-show");
         imageCaption.classList.add("form__hero-image-10mb-caption-hide");
@@ -192,7 +199,9 @@ uploadImageTiny.addEventListener(
         imageInput.src = reader.result;
         imagePreviewTiny.src = reader.result;
         imageInputTiny.src = reader.result;
-        postImage = reader.result;
+        postCardImage = reader.result;
+        postCardImageName = file.name;
+
         imageButtons.classList.add("form__hero-image-10mb-buttons-show");
         imageCaption.classList.add("form__hero-image-10mb-caption-hide");
         imageTinyButtons.classList.add("form__hero-image-5mb-buttons-show");
@@ -237,14 +246,31 @@ publishButton.addEventListener(
     event.preventDefault();
     const data = {
       title: uploadTitle.value,
-      description: uploadDescription.value,
+      subtitle: uploadDescription.value,
       authorName: uploadAuthorName.value,
-      authorPhoto: authorAvatar,
+      authorImg: authorAvatar,
+      authorImgName: authorPhotoName,
       publishDate: uploadPublishDate.value,
-      image: postImage,
+      articleImg: articleImage,
+      articleImgName: articleImageName,
+      postCardImg: postCardImage,
+      postCardImgName: postCardImageName,
       content: uploadContent.value,
     }
-    const json = JSON.stringify(data);
+    const json = JSON.stringify(data, null, "\t");
     console.log(json);
   }
 )
+
+async function doFecth(data) {
+  const response = await fetch("/api/post", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8"
+    },
+    body: JSON.stringify(data, null, "\t")
+  });
+  if (!response.ok) {
+    alert("Ошибка HTTP: " + response.status);
+  }
+}
