@@ -1,11 +1,18 @@
 package main
 
 import (
+	"database/sql"
+	"encoding/base64"
+	"encoding/json"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -14,38 +21,61 @@ type indexPageData struct {
 	MostResentPosts []mostRecentPostData
 }
 
-type postPageData struct{}
+type adminPageData struct{}
 
-type featuredPostData struct {
-	ImgModifier string `db:"image_url"`
-	Title       string `db:"title"`
-	Subtitle    string `db:"subtitle"`
-	AuthorImg   string `db:"author_url"`
-	Author      string `db:"author"`
-	PublishDate string `db:"publish_date"`
+type loginPageData struct{}
+
+type createPostRequest struct {
+	Title              string `json:"title"`
+	Subtitle           string `json:"subtitle"`
+	Author             string `json:"authorName"`
+	AuthorImg          string `json:"authorImg"`
+	AuthorImgName      string `json:"authorImgName"`
+	PublishDate        string `json:"publishDate"`
+	PreviewImg         string `json:"articleImg"`
+	PreviewImgName     string `json:"articleImgName"`
+	PostPreviewImg     string `json:"postCardImage"`
+	PostPreviewImgName string `json:"postCardImageName"`
+	Content            string `json:"content"`
 }
 
-type mostRecentPostData struct {
+type featuredPostData struct {
+	PostID      string `db:"post_id"`
+	ImgModifier string `db:"image_modifier"`
 	Img         string `db:"image_url"`
 	Title       string `db:"title"`
 	Subtitle    string `db:"subtitle"`
 	AuthorImg   string `db:"author_url"`
 	Author      string `db:"author"`
 	PublishDate string `db:"publish_date"`
+	PostURL     string
+}
+
+type mostRecentPostData struct {
+	PostID      string `db:"post_id"`
+	Img         string `db:"image_url"`
+	Title       string `db:"title"`
+	Subtitle    string `db:"subtitle"`
+	AuthorImg   string `db:"author_url"`
+	Author      string `db:"author"`
+	PublishDate string `db:"publish_date"`
+	PostURL     string
+}
+
+type postData struct {
+	Title    string `db:"title"`
+	Subtitle string `db:"subtitle"`
+	Img      string `db:"image_url"`
+	Content  string `db:"content"`
 }
 
 func index(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+
 		mainPosts, err := featuredPosts(dbx)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err)
-			return
-		}
-		ts, err := template.ParseFiles("pages/index.html")
-		if err != nil {
-			http.Error(w, "Internal Server Error", 500)
-			log.Println(err.Error())
 			return
 		}
 
@@ -53,6 +83,13 @@ func index(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err)
+			return
+		}
+
+		ts, err := template.ParseFiles("pages/index.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
 			return
 		}
 
@@ -75,6 +112,28 @@ func index(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 func post(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 
+		postIDStr := mux.Vars(r)["postID"]
+
+		postID, err := strconv.Atoi(postIDStr)
+		if err != nil {
+			http.Error(w, "Invalid post id", 403)
+			log.Println(err)
+			return
+		}
+
+		post, err := postByID(dbx, postID)
+		if err != nil {
+			if err == sql.ErrNoRows {
+				http.Error(w, "Post not found", 404)
+				log.Println(err)
+				return
+			}
+
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err)
+			return
+		}
+
 		ts, err := template.ParseFiles("pages/post.html")
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
@@ -82,7 +141,51 @@ func post(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		data := postPageData{}
+		err = ts.Execute(w, post)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		log.Println("Request completed successfully")
+	}
+}
+
+func admin(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		ts, err := template.ParseFiles("admin/admin.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		data := adminPageData{}
+
+		err = ts.Execute(w, data)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		log.Println("Request completed successfully")
+	}
+}
+
+func login(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		ts, err := template.ParseFiles("admin/login.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		data := loginPageData{}
 
 		err = ts.Execute(w, data)
 		if err != nil {
@@ -98,15 +201,17 @@ func post(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 func featuredPosts(dbx *sqlx.DB) ([]featuredPostData, error) {
 	const query = `
 		SELECT
+			post_id,
 			title,
 			subtitle,
 			author,
 			author_url,
 			publish_date,
-			image_url
+			image_modifier
 		FROM
 			post
-		WHERE featured = 1
+		WHERE 
+		  featured = 1
 	`
 
 	var posts []featuredPostData
@@ -116,12 +221,19 @@ func featuredPosts(dbx *sqlx.DB) ([]featuredPostData, error) {
 		return nil, err
 	}
 
+	for _, post := range posts {
+		post.PostURL = "/post/" + post.PostID
+	}
+
+	log.Println(posts)
+
 	return posts, nil
 }
 
 func mostRecentPosts(dbx *sqlx.DB) ([]mostRecentPostData, error) {
 	const query = `
 		SELECT
+		    post_id,
 			title,
 			subtitle,
 			author,
@@ -130,7 +242,8 @@ func mostRecentPosts(dbx *sqlx.DB) ([]mostRecentPostData, error) {
 			image_url
 		FROM
 			post
-		WHERE featured = 0
+		WHERE 
+		  featured = 0
 	`
 
 	var posts []mostRecentPostData
@@ -140,5 +253,135 @@ func mostRecentPosts(dbx *sqlx.DB) ([]mostRecentPostData, error) {
 		return nil, err
 	}
 
+	for _, post := range posts {
+		post.PostURL = "/post/" + post.PostID
+	}
+
+	log.Println(posts)
+
 	return posts, nil
+}
+
+func postByID(dbx *sqlx.DB, postID int) (postData, error) {
+	const query = `
+			SELECT
+				title,
+				subtitle,
+				image_url,
+				content
+			FROM
+				post
+			WHERE 
+			  post_id = ?
+	`
+
+	var post postData
+
+	err := dbx.Get(&post, query, postID)
+	if err != nil {
+		return postData{}, err
+	}
+
+	return post, nil
+}
+
+func createPost(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		reqData, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err)
+			return
+		}
+
+		var req createPostRequest
+
+		err = json.Unmarshal(reqData, &req)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err)
+			return
+		}
+
+		err = savePost(dbx, req)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err)
+			return
+		}
+
+		log.Println("Save post request completed successfully")
+	}
+}
+
+func savePost(dbx *sqlx.DB, req createPostRequest) error {
+
+	authorImgName, err := makeImg(req.AuthorImgName, req.AuthorImg)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	previewImgName, err := makeImg(req.PreviewImgName, req.PreviewImg)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	postPreviewImgName, err := makeImg(req.PostPreviewImgName, req.PostPreviewImg)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	const query = `
+       INSERT INTO post
+       (
+           title,
+           subtitle,
+		   preview_img,
+		   post_preview_img,
+		   author,
+		   author_modifier,
+		   publish_date,
+		   content
+       )
+       VALUES
+       (
+           ?,
+           ?,
+		   ?,
+		   ?,
+		   ?,
+		   ?,
+		   ?,
+		   ?
+       )
+	`
+
+	_, err = dbx.Exec(query, req.Title, req.Subtitle, previewImgName, postPreviewImgName, req.Author, authorImgName, req.PublishDate, req.Content)
+
+	return err
+
+}
+
+func makeImg(imgName string, imgContent string) (string, error) {
+	decodedAuthorImg, err := base64.StdEncoding.DecodeString(imgContent)
+	if err != nil {
+		log.Println(err)
+		return "", err
+	}
+
+	fileAuthorImg, err := os.Create("static/img/" + imgName)
+	if err != nil {
+		log.Println(err)
+		return "", err
+	}
+
+	_, err = fileAuthorImg.Write(decodedAuthorImg)
+	if err != nil {
+		log.Println(err)
+		return "", err
+	}
+	return "static/img/" + imgName, err
 }
