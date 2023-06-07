@@ -8,6 +8,11 @@ CREATE TABLE post (
 	author_url VARCHAR(255) NOT NULL,
 	publish_date VARCHAR(255) NOT NULL,
 	image_url VARCHAR(255) NOT NULL,
+	image_modifier VARCHAR (255),
 	featured TINYINT(1) DEFAULT 0,
+    content TEXT NOT NULL,
 	PRIMARY KEY (post_id)
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+SELECT * FROM post;
+drop table post;
