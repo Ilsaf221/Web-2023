@@ -426,7 +426,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 1px solid #EAEAEA;
+    border-top: 1px solid #EAEAEA;
+    border-bottom: 1px solid #EAEAEA;
 }
 
 .inner-post-card-box__author {

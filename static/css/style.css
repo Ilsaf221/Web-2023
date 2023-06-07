@@ -259,20 +259,22 @@
     flex-direction: column; 
     justify-content: flex-end;
     margin-top: 14px;
-    margin-left: 13px;
-    margin-right: 13px;
 }
 
 .post-block__title 
 {
     font: 400 16px/1.31 "Lora";
     color: black;
+    margin-left: 13px;
+    margin-right: 13px;
 }
 
 .post-block__description 
 {
     font: 400 13px/1.46 "Oxygen";
     color: #7A7A7A;
+    margin-left: 13px;
+    margin-right: 13px;
 }
 
 .post-block__post-info
@@ -280,6 +282,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-top: 1px solid #EAEAEA;
 }
 
 .post-block__author
@@ -299,11 +302,13 @@
 {
     font: 400 12px/2.92 "Oxygen";
     color: #999999;
+    margin-right: 13px;
 }
 
 .post-block__image-of-person
 {
     border-radius: 50%;
+    margin-left: 13px;
 }
 
 .footer__background
