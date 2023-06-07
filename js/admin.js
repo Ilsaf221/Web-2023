@@ -16,7 +16,9 @@ const defaultName = 'Enter author name';
 const defaultDate = '19/04/2023';
 const defaultAuthorPhoto = "../static/img/upload_avatar.png";
 const defaultImage = "../static/img/hero_image_10mb.png";
+const defaultPreviewImage = "../static/img/article_preview_image.png";
 const defaultImageTiny = "../static/img/hero_image_5mb.png";
+const defaultPreviewImageTiny = "../static/img/post_card_preview_image.png";
 
 const publishButton = document.querySelector(".button");
 
@@ -106,7 +108,7 @@ uploadAuthorPhoto.addEventListener(
       () => {
         authorPhotoPreviewTiny.src = reader.result;
         authorPhoto.src = reader.result;
-        authorAvatar = reader.result;
+        authorAvatar = reader.result.replace("data:", "").replace(/^.+,/, "");
         authorPhotoName = file.name
       },
       false
@@ -161,7 +163,7 @@ uploadImage.addEventListener(
         imageInput.src = reader.result;
         imagePreviewTiny.src = reader.result;
         imageInputTiny.src = reader.result;
-        articleImage = reader.result;
+        articleImage = reader.result.replace("data:", "").replace(/^.+,/, "");
         articleImageName = file.name;
 
         imageButtons.classList.add("form__hero-image-10mb-buttons-show");
@@ -199,8 +201,8 @@ uploadImageTiny.addEventListener(
         imageInput.src = reader.result;
         imagePreviewTiny.src = reader.result;
         imageInputTiny.src = reader.result;
-        postCardImage = reader.result;
-        postCardImageName = file.name;
+        articleImage = reader.result.replace("data:", "").replace(/^.+,/, "");
+        articleImageName = file.name;
 
         imageButtons.classList.add("form__hero-image-10mb-buttons-show");
         imageCaption.classList.add("form__hero-image-10mb-caption-hide");
@@ -233,9 +235,9 @@ removeImages.addEventListener(
     imageCaption.classList.remove("form__hero-image-10mb-caption-hide");
     imageTinyButtons.classList.remove("form__hero-image-5mb-buttons-show");
     imageTinyCaption.classList.remove("form__hero-image-5mb-caption-hide");
-    imagePreview.src = defaultImage;
+    imagePreview.src = defaultPreviewImage;
     imageInput.src = defaultImage;
-    imagePreviewTiny.src = defaultImageTiny;
+    imagePreviewTiny.src = defaultPreviewImageTiny;
     imageInputTiny.src = defaultImageTiny;
   }
 )
@@ -248,21 +250,18 @@ publishButton.addEventListener(
       title: uploadTitle.value,
       subtitle: uploadDescription.value,
       authorName: uploadAuthorName.value,
-      authorImg: authorAvatar,
-      authorImgName: authorPhotoName,
+      authorImg: authorPhotoName,
+      authorImgContent: authorAvatar,
       publishDate: uploadPublishDate.value,
-      articleImg: articleImage,
-      articleImgName: articleImageName,
-      postCardImg: postCardImage,
-      postCardImgName: postCardImageName,
+      Img: articleImageName,
+      ImgContent: articleImage,
       content: uploadContent.value,
     }
-    const json = JSON.stringify(data, null, "\t");
-    console.log(json);
+    doFetch(data);
   }
 )
 
-async function doFecth(data) {
+async function doFetch(data) {
   const response = await fetch("/api/post", {
     method: "POST",
     headers: {
