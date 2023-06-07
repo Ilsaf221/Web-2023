@@ -26,17 +26,15 @@ type adminPageData struct{}
 type loginPageData struct{}
 
 type createPostRequest struct {
-	Title              string `json:"title"`
-	Subtitle           string `json:"subtitle"`
-	Author             string `json:"authorName"`
-	AuthorImg          string `json:"authorImg"`
-	AuthorImgName      string `json:"authorImgName"`
-	PublishDate        string `json:"publishDate"`
-	PreviewImg         string `json:"articleImg"`
-	PreviewImgName     string `json:"articleImgName"`
-	PostPreviewImg     string `json:"postCardImage"`
-	PostPreviewImgName string `json:"postCardImageName"`
-	Content            string `json:"content"`
+	Title            string `json:"title"`
+	Subtitle         string `json:"subtitle"`
+	Author           string `json:"authorName"`
+	AuthorImg        string `json:"authorImg"`
+	AuthorImgContent string `json:"authorImgContent"`
+	PublishDate      string `json:"publishDate"`
+	Img              string `json:"Img"`
+	ImgContent       string `json:"ImgContent"`
+	Content          string `json:"content"`
 }
 
 type featuredPostData struct {
@@ -207,6 +205,7 @@ func featuredPosts(dbx *sqlx.DB) ([]featuredPostData, error) {
 			author,
 			author_url,
 			publish_date,
+			image_url,
 			image_modifier
 		FROM
 			post
@@ -287,6 +286,7 @@ func postByID(dbx *sqlx.DB, postID int) (postData, error) {
 
 func createPost(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+
 		reqData, err := io.ReadAll(r.Body)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
@@ -316,19 +316,13 @@ func createPost(dbx *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 func savePost(dbx *sqlx.DB, req createPostRequest) error {
 
-	authorImgName, err := makeImg(req.AuthorImgName, req.AuthorImg)
+	authorImg, err := createImg(req.AuthorImg, req.AuthorImgContent)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
 
-	previewImgName, err := makeImg(req.PreviewImgName, req.PreviewImg)
-	if err != nil {
-		log.Println(err)
-		return err
-	}
-
-	postPreviewImgName, err := makeImg(req.PostPreviewImgName, req.PostPreviewImg)
+	img, err := createImg(req.Img, req.ImgContent)
 	if err != nil {
 		log.Println(err)
 		return err
@@ -339,11 +333,10 @@ func savePost(dbx *sqlx.DB, req createPostRequest) error {
        (
            title,
            subtitle,
-		   preview_img,
-		   post_preview_img,
 		   author,
-		   author_modifier,
+		   author_url,
 		   publish_date,
+		   image_url,
 		   content
        )
        VALUES
@@ -354,18 +347,17 @@ func savePost(dbx *sqlx.DB, req createPostRequest) error {
 		   ?,
 		   ?,
 		   ?,
-		   ?,
-		   ?
+		   ?		   
        )
 	`
 
-	_, err = dbx.Exec(query, req.Title, req.Subtitle, previewImgName, postPreviewImgName, req.Author, authorImgName, req.PublishDate, req.Content)
+	_, err = dbx.Exec(query, req.Title, req.Subtitle, req.Author, authorImg, req.PublishDate, img, req.Content)
 
 	return err
 
 }
 
-func makeImg(imgName string, imgContent string) (string, error) {
+func createImg(imgName string, imgContent string) (string, error) {
 	decodedAuthorImg, err := base64.StdEncoding.DecodeString(imgContent)
 	if err != nil {
 		log.Println(err)
@@ -383,5 +375,5 @@ func makeImg(imgName string, imgContent string) (string, error) {
 		log.Println(err)
 		return "", err
 	}
-	return "static/img/" + imgName, err
+	return "/static/img/" + imgName, err
 }
